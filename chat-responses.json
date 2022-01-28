@@ -1,0 +1,25 @@
+{'conversation_id': '754893', 'messages': [
+        {'message_id': '754893-0', 'text': "hello, my money hasn't landed in my bank account yet. I want to know what happened", 'created_at': '1640197668'
+        }
+    ], 'merchant_id': '558392', 'subject': 'bank account receipt problem'
+}
+{'conversation_id': '754894', 'messages': [
+        {'message_id': '754894-0', 'text': "my chip is not connected to the internet. I've already tested my wifi and it's ok, the problem is on the chip itself", 'created_at': '1640197670'
+        }
+    ], 'merchant_id': '530364', 'subject': 'connection problem'
+}
+{'conversation_id': '754895', 'messages': [
+        {'message_id': '754895-0', 'text': "where is my credit card machine? it hasn't arrived yet, the delivery is already late", 'created_at': '1640197673'
+        }
+    ], 'merchant_id': '384923', 'subject': 'late delivery'
+}
+{'conversation_id': '754896', 'messages': [
+        {'message_id': '754896-0', 'text': "Hi! I wanted to know where my machine is. I'm going on a vacation next week and I won't be here to receive the machine, so I'd like to know what day the delivery is planned to let someone pick it up if I'm not home", 'created_at': '1640197675'
+        }
+    ], 'merchant_id': '395023', 'subject': 'check delivery address'
+}
+{'conversation_id': '754897', 'messages': [
+        {'message_id': '754897-0', 'text': 'Good Morning! I bought the infinitepay machine and forgot the address that I asked to use to deliver the machine. Can you guys tell me where the machine will be delivered?', 'created_at': '1640197677'
+        }
+    ], 'merchant_id': '849583', 'subject': 'delivery forecast'
+}
