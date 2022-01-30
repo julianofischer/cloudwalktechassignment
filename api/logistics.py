@@ -6,12 +6,14 @@ ZIPCODE_ENDPOINT = 'zip_code'
 
 
 def track(id_sale):
+    # only strings
+    id_sale = str(id_sale)
     headers = {'authorization': 'teste'}
     data = {"id_sale": id_sale}
     url = f'{API_URL}/{TRACK_ENDPOINT}'
+    print(url)
     response = requests.post(url, json=data, headers=headers)
-    print("Status Code", response.status_code)
-    print("JSON Response ", response.json())
+    return response.json()
 
 
 def get_address(zip_code):
@@ -19,9 +21,8 @@ def get_address(zip_code):
     data = {"zip_code": zip_code}
     url = f'{API_URL}/{ZIPCODE_ENDPOINT}'
     response = requests.post(url, json=data, headers=headers)
-    print("Status Code", response.status_code)
-    print("JSON Response ", response.json())
+    return response.json()
 
 
-#track("123456")
-#get_address("31160550")
+# print(track('123458'))
+# print(get_address(60811340))

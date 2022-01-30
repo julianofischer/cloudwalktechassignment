@@ -10,8 +10,7 @@ def check_chip_status(chip_id):
     data = {"chip_id": chip_id}
     url = f'{API_URL}/{CHIP_STATUS_ENDPOINT}'
     response = requests.post(url, json=data, headers=headers)
-    print("Status Code", response.status_code)
-    print("JSON Response ", response.json())
+    return response.json()
 
 
 #check_chip_status("CHIP37648")
