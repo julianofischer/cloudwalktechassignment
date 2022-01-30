@@ -41,19 +41,24 @@ def check_connection(merchant_id):
         status.append(check_chip_status(chip))
     return generate_connection_msg(status)
 
+
 # 'late delivery'
 def check_late_delivery(merchant_id):
-    pass
+    return check_delivery_forecast(merchant_id)
 
 
 # 'check delivery address'
 def check_delivery_address(merchant_id):
-    pass
+    # assumption: although the subject is 'check delivery address', the chat message
+    # is asking for the delivery forecast. I'm assuming that the AI is classifying
+    # messages asking for delivery forecast as 'check delivery address'
+    return check_delivery_forecast(merchant_id)
 
 
 # 'delivery forecast'
 def check_delivery_forecast(merchant_id):
     sales = get_sales(merchant_id)
+    print(sales)
     # assumption: there are a ordered list of merchant receipts and the problem
     # is related to the last one.
     sale_id = str(sales[-1][0])
@@ -73,3 +78,6 @@ __load_module__()
 # solve(conversation)
 # print(check_connection('530364'))
 # print(check_delivery_forecast('849583'))
+# print(check_late_delivery('384923'))
+# print(check_delivery_address('395023'))
+
