@@ -1,5 +1,9 @@
+import os.path
 import sqlite3
-DATABASE = '../simulation-db.db'
+from pathlib import Path
+
+BASE_DIR = str(Path(__file__).parent.parent)
+DATABASE = os.path.join(BASE_DIR, 'simulation-db.db')
 TABLE_SALES = 'sales'
 TABLE_TRANSACTIONS = 'transactions'
 TABLE_RECEIPT = 'receipt'

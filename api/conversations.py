@@ -1,4 +1,3 @@
-import json
 import requests
 
 API_URL = 'https://chats-api-dot-active-thunder-329100.rj.r.appspot.com'
@@ -48,7 +47,7 @@ def get_conversations() -> list:
     return ids
 
 
-def make_messages(msgs: list) -> list:
+def _make_messages(msgs: list) -> list:
     """Given a list containing information about conversation messages, constructs a list of
     ConversationMessage objects
     :param msgs:  the list containing information about conversation messages
@@ -73,7 +72,7 @@ def get_conversation_info(conversation_id: str) -> Conversation:
     conversation_id = jsonx['conversation_id']
     merchant_id = jsonx['merchant_id']
     subject = jsonx['subject']
-    messages = make_messages(jsonx['messages'])
+    messages = _make_messages(jsonx['messages'])
     return Conversation(conversation_id, messages, merchant_id, subject)
 
 

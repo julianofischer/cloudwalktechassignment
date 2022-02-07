@@ -1,21 +1,18 @@
 from string import Template
 
-TEMPLATE_RECEIPT_SUCCESSFULL = """Hello, $name, thank you for the message.
+TEMPLATE_RECEIPT_SUCCESSFUL = """Hello, $name, thank you for the message.
 According to our records, on $date a transfer of $amount was successfully made to your bank account.
 If this is the transfer you're concerned about, we ask to check you bank account again.
 """
-
-TEMPLATE_RECEIPT_UNSUCCESSFULL = """Hello, $name, thank you for the message.
+TEMPLATE_RECEIPT_UNSUCCESSFUL = """Hello, $name, thank you for the message.
 According to our records, we unsuccessfully tried to transfer $amount to your bank account on $date because "$reason".
 We apologize for the inconvenience.
 We will try to make this transfer again soon.
 """
-
 TEMPLATE_CONNECTION_OK = """Hello, user.
 We've checked that all your chips are connected.
 We respectfully ask you to check again.
 """
-
 TEMPLATE_CONNECTION_PROBLEM = """Hello, user.
 We've checked that the chip(s) with the following id(s): $ids is(are) indeed having connection problems.
 $other_messages
@@ -37,16 +34,24 @@ The delivery address is St. $street, $neighborhood, $city, $state, $cep.
 """
 
 
-def generate_receipt_msg(receipt):
+def generate_receipt_msg(receipt: tuple) -> str:
+    '''
+    :param receipt: a tuple containing receipt information (merchant_id, date, status, reason, amount)
+    :return: a message for the merchant indicating if the transfer was successful or unsuccessful
+    '''
     receipt = receipt.values()
     name, date, status, reason, amount = receipt
     if status != 'OK':
-        return Template(TEMPLATE_RECEIPT_UNSUCCESSFULL).substitute(name=name, amount=amount, date=date, reason=reason)
+        return Template(TEMPLATE_RECEIPT_UNSUCCESSFUL).substitute(name=name, amount=amount, date=date, reason=reason)
     else:
-        return Template(TEMPLATE_RECEIPT_SUCCESSFULL).substitute(name=name, date=date, amount=amount)
+        return Template(TEMPLATE_RECEIPT_SUCCESSFUL).substitute(name=name, date=date, amount=amount)
 
 
-def generate_connection_msg(chips_status):
+def generate_connection_msg(chips_status: list) -> str:
+    '''
+    :param chips_status: a list containing chips status for each chip linked to a merchant.
+    :return: a message for the merchant indicating the connection status for each chip.
+    '''
     inactive = []
     without_conn = []
 
@@ -74,15 +79,12 @@ def generate_connection_msg(chips_status):
     return msg
 
 
-def generate_delivery_data_msg():
-    pass
-
-
-def generate_delivery_address_msg():
-    pass
-
-
-def generate_delivery_forecast_msg(track_info):
+def generate_delivery_forecast_msg(track_info: dict) -> str:
+    ''' Generates a message with the delivery forecast for a certain InfinitePay machine.
+    :param track_info: a dict containing track info: {'id': '123458', 'status': 'In transit between
+    distribution centers', 'delivery_forecast': '01/03/2022', 'destination_zip_code': '60811340'}
+    :return: a string containing a message for the merchant regarding the delivery forecast.
+    '''
     status = track_info['status']
     delivery_forecast = track_info['delivery_forecast']
     #neighborhood = address_info['neighborhood']
